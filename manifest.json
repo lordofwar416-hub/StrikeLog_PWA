@@ -1,0 +1,29 @@
+// File: manifest.json
+// Version: StrikeLog PWA v1.0
+// Timestamp: 2025-11-25 07:22 (UTC+2)
+// -----------------------------------------
+{
+  "name": "StrikeLog",
+  "short_name": "StrikeLog",
+  "description": "Ultra-fast fishing strike logger with Catch Snapshot v2.5.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

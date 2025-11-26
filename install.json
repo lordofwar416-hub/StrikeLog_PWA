@@ -1,0 +1,38 @@
+{
+  "file": "install.json",
+  "version": "StrikeLog PWA v1.0",
+  "timestamp": "2025-11-25 07:22 (UTC+2)",
+  "description": "StrikeLog installation and packaging manifest.",
+  "structure": {
+    "root_files": [
+      "index.html",
+      "manifest.json",
+      "service-worker.js"
+    ],
+    "css": [
+      "css/style.css"
+    ],
+    "js": [
+      "js/app.js",
+      "js/ui.js",
+      "js/env.js",
+      "js/geo.js",
+      "js/lunar.js"
+    ],
+    "icons": [
+      "icons/icon-192.png",
+      "icons/icon-512.png"
+    ]
+  },
+  "pwa": {
+    "offline": true,
+    "service_worker": "service-worker.js",
+    "manifest": "manifest.json",
+    "theme_color": "#020617",
+    "display": "standalone"
+  },
+  "integrity": {
+    "validated": true,
+    "hashes_included": false
+  }
+}

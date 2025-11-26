@@ -1,0 +1,937 @@
+// File: css/style.css
+// Version: StrikeLog PWA v1.0
+// Timestamp: 2025-11-25 07:22 (UTC+2)
+// -----------------------------------------
+
+/* -----------------------------------------
+   GLOBAL VARIABLES (DARK THEME)
+----------------------------------------- */
+:root {
+  --sl-bg: #020617;
+  --sl-bg-card: #0f172a;
+  --sl-bg-card-alt: #1e293b;
+  --sl-bg-elevated: #0b1220;
+
+  --sl-text: #e2e8f0;
+  --sl-text-muted: #94a3b8;
+  --sl-border: #1e293b;
+
+  --sl-primary: #0ea5e9;
+  --sl-primary-hover: #38bdf8;
+
+  --sl-accent: #22d3ee;
+  --sl-danger: #ef4444;
+  --sl-danger-hover: #f87171;
+  --sl-success: #22c55e;
+
+  --sl-card-radius: 12px;
+  --sl-pad: 14px;
+
+  --sl-font-main: 'Inter', sans-serif;
+  --sl-font-title: 'Orbitron', sans-serif;
+}
+
+/* -----------------------------------------
+   RESET
+----------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--sl-bg);
+  color: var(--sl-text);
+  font-family: var(--sl-font-main);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+  scroll-behavior: smooth;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--sl-text);
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* -----------------------------------------
+   APP LAYOUT
+----------------------------------------- */
+.sl-body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sl-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* -----------------------------------------
+   TOP APP BAR
+----------------------------------------- */
+.sl-appbar {
+  background: #0f172a;
+  border-bottom: 1px solid var(--sl-border);
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sl-appbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sl-logo-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--sl-primary);
+  border-radius: 50%;
+}
+
+.sl-title-block .sl-title {
+  font-family: var(--sl-font-title);
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.sl-subtitle {
+  font-size: 0.7rem;
+  color: var(--sl-text-muted);
+}
+
+/* Icons on right side */
+.sl-icon-btn {
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: 8px;
+  color: var(--sl-text-muted);
+}
+
+.sl-icon-btn:hover {
+  background: #1e293b;
+  color: var(--sl-primary-hover);
+}
+
+/* -----------------------------------------
+   MAIN CONTENT
+----------------------------------------- */
+.sl-main {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 70px; /* for FAB spacing */
+}
+
+/* -----------------------------------------
+   TAB NAVIGATION
+----------------------------------------- */
+.sl-tabbar {
+  display: flex;
+  justify-content: space-around;
+  background: #0f172a;
+  border-bottom: 1px solid var(--sl-border);
+}
+
+.sl-tab {
+  flex: 1;
+  padding: 8px 0;
+  text-align: center;
+  color: var(--sl-text-muted);
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid transparent;
+}
+
+.sl-tab-active {
+  color: var(--sl-primary);
+  border-bottom-color: var(--sl-primary);
+}
+
+/* -----------------------------------------
+   VIEWS
+----------------------------------------- */
+.sl-views-wrapper {
+  padding: 14px;
+}
+
+.sl-view {
+  display: none;
+}
+
+.sl-view-active {
+  display: block;
+}
+
+/* -----------------------------------------
+   SECTIONS & TITLES
+----------------------------------------- */
+.sl-section-title {
+  font-family: var(--sl-font-title);
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+  color: var(--sl-primary);
+}
+
+.sl-section {
+  margin-bottom: 20px;
+}
+
+/* -----------------------------------------
+   CARD COMPONENT
+----------------------------------------- */
+.sl-card {
+  background: var(--sl-bg-card);
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-card-radius);
+  margin-bottom: 20px;
+}
+
+.sl-card-header {
+  padding: var(--sl-pad);
+  border-bottom: 1px solid var(--sl-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sl-card-header h3 {
+  font-family: var(--sl-font-title);
+  font-size: 1rem;
+  color: var(--sl-primary);
+}
+
+.sl-card-body {
+  padding: var(--sl-pad);
+}
+
+.sl-card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* -----------------------------------------
+   FORM GRID
+----------------------------------------- */
+.sl-form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.sl-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sl-form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+/* Responsive collapse */
+@media (max-width: 600px) {
+  .sl-form-grid-2,
+  .sl-form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -----------------------------------------
+   FORM FIELDS
+----------------------------------------- */
+.sl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sl-label {
+  font-size: 0.8rem;
+  color: var(--sl-text-muted);
+}
+
+.sl-input,
+.sl-select,
+.sl-textarea {
+  background: var(--sl-bg-card-alt);
+  padding: 10px;
+  border-radius: 8px;
+  color: var(--sl-text);
+  border: 1px solid var(--sl-border);
+}
+
+.sl-input-file {
+  background: var(--sl-bg-card-alt);
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.sl-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.sl-btn-compact {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+// File: css/style.css (Part 2/4)
+// Version: StrikeLog PWA v1.0
+// Timestamp: 2025-11-25 07:22 (UTC+2)
+// -----------------------------------------
+
+/* -----------------------------------------
+   BUTTONS
+----------------------------------------- */
+.sl-btn-primary {
+  background: var(--sl-primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid var(--sl-primary-hover);
+}
+.sl-btn-primary:hover {
+  background: var(--sl-primary-hover);
+}
+
+.sl-btn-secondary {
+  background: #1e293b;
+  color: var(--sl-text);
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--sl-border);
+}
+.sl-btn-secondary:hover {
+  background: #334155;
+}
+
+.sl-btn-danger {
+  background: var(--sl-danger);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.sl-btn-danger:hover {
+  background: var(--sl-danger-hover);
+}
+
+.sl-btn-text {
+  background: none;
+  color: var(--sl-primary);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+.sl-btn-text:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------------------
+   MISSION CONTROLS
+----------------------------------------- */
+.sl-mission-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sl-mission-meta {
+  display: flex;
+  justify-content: space-between;
+  background: var(--sl-bg-card-alt);
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.sl-mission-status {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.sl-mission-status-idle {
+  color: var(--sl-text-muted);
+}
+
+.sl-mission-status-active {
+  color: var(--sl-success);
+}
+
+.sl-mission-duration {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* -----------------------------------------
+   WEATHER GRID
+----------------------------------------- */
+.sl-weather-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media(max-width: 600px) {
+  .sl-weather-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sl-weather-item {
+  background: var(--sl-bg-card-alt);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid var(--sl-border);
+}
+
+.sl-weather-label {
+  font-size: 0.75rem;
+  color: var(--sl-text-muted);
+  margin-bottom: 4px;
+}
+
+.sl-weather-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--sl-primary);
+}
+
+.sl-weather-sub {
+  font-size: 0.75rem;
+  color: var(--sl-text-muted);
+}
+
+/* -----------------------------------------
+   STRIKE LIST
+----------------------------------------- */
+.sl-strike-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sl-strike-item {
+  background: var(--sl-bg-card-alt);
+  padding: 14px;
+  border-radius: var(--sl-card-radius);
+  border: 1px solid var(--sl-border);
+}
+
+.sl-strike-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.sl-strike-species {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sl-primary);
+}
+
+.sl-strike-time {
+  font-size: 0.75rem;
+  color: var(--sl-text-muted);
+}
+
+.sl-strike-meta {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--sl-text-muted);
+}
+
+.sl-empty {
+  text-align: center;
+  padding: 20px;
+  color: var(--sl-text-muted);
+}
+
+/* -----------------------------------------
+   SPOTS LIST
+----------------------------------------- */
+.sl-spot-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sl-spot-item {
+  background: var(--sl-bg-card-alt);
+  border-radius: var(--sl-card-radius);
+  padding: 14px;
+  border: 1px solid var(--sl-border);
+}
+
+.sl-spot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sl-spot-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sl-primary);
+}
+
+.sl-spot-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.sl-spot-meta {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--sl-text-muted);
+  line-height: 1.4;
+}
+
+/* -----------------------------------------
+   MAP
+----------------------------------------- */
+.sl-map-card {
+  padding-bottom: 0;
+}
+
+.sl-map-container {
+  height: 260px;
+  border: 1px solid var(--sl-border);
+  border-radius: var(--sl-card-radius);
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.sl-map-placeholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--sl-text-muted);
+  font-size: 0.85rem;
+}
+
+.sl-map-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--sl-text-muted);
+}
+
+.sl-map-coords,
+.sl-map-spot {
+  font-weight: 600;
+  color: var(--sl-primary);
+}
+
+/* -----------------------------------------
+   FLOATING ACTION BUTTON — STRIKE
+----------------------------------------- */
+.sl-strike-fab {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: var(--sl-danger);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 26px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: 2000;
+  box-shadow: 0 0 12px rgba(239,68,68,0.45);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s ease;
+}
+
+.sl-strike-fab:hover {
+  background: var(--sl-danger-hover);
+}
+
+.sl-strike-fab-label {
+  font-family: var(--sl-font-title);
+  letter-spacing: 0.5px;
+}
+// File: css/style.css (Part 3/4)
+// Version: StrikeLog PWA v1.0
+// Timestamp: 2025-11-25 07:22 (UTC+2)
+// -----------------------------------------
+
+/* -----------------------------------------
+   STRIKE SHEET (BOTTOM MODAL)
+----------------------------------------- */
+.sl-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 2500;
+}
+
+.sl-hidden {
+  display: none !important;
+}
+
+.sl-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 90vh;
+  background: var(--sl-bg-card);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid var(--sl-border);
+  z-index: 3000;
+  overflow-y: auto;
+  animation: sl-slide-up 0.25s ease-out;
+}
+
+@keyframes sl-slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sl-sheet-header {
+  padding: var(--sl-pad);
+  border-bottom: 1px solid var(--sl-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sl-sheet-header h2 {
+  font-family: var(--sl-font-title);
+  font-size: 1.1rem;
+  color: var(--sl-primary);
+}
+
+.sl-sheet-body {
+  padding: var(--sl-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sl-sheet-footer {
+  padding: var(--sl-pad);
+  border-top: 1px solid var(--sl-border);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* -----------------------------------------
+   STRIKE META ROW
+----------------------------------------- */
+.sl-strike-meta-row {
+  display: flex;
+  justify-content: space-between;
+  background: var(--sl-bg-card-alt);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--sl-border);
+}
+
+.sl-strike-meta-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sl-primary);
+}
+
+/* -----------------------------------------
+   PHOTO PREVIEW
+----------------------------------------- */
+.sl-photo-preview {
+  border: 1px solid var(--sl-border);
+  padding: 8px;
+  border-radius: 12px;
+  background: var(--sl-bg-card-alt);
+  margin-top: 6px;
+  max-height: 180px;
+  overflow: hidden;
+}
+
+.sl-photo-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* -----------------------------------------
+   TOAST / SNACKBAR
+----------------------------------------- */
+.sl-toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: var(--sl-text);
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--sl-border);
+  box-shadow: 0 0 10px rgba(14,165,233,0.3);
+  z-index: 5000;
+  animation: sl-toast-slide 0.25s ease-out;
+}
+
+@keyframes sl-toast-slide {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* -----------------------------------------
+   INPUT DETAILS
+----------------------------------------- */
+.sl-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* -----------------------------------------
+   SMALL LABELS / CHIPS
+----------------------------------------- */
+.sl-label-sm {
+  font-size: 0.7rem;
+  color: var(--sl-text-muted);
+}
+
+.sl-chip {
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.sl-chip-muted {
+  background: #1e293b;
+  color: var(--sl-text-muted);
+}
+
+/* -----------------------------------------
+   STRIKE ENVIRONMENT BLOCK
+----------------------------------------- */
+.sl-strike-env-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sl-strike-env-item {
+  flex: 1;
+  background: var(--sl-bg-card-alt);
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid var(--sl-border);
+  margin-right: 10px;
+}
+
+.sl-strike-env-item:last-child {
+  margin-right: 0;
+}
+
+.sl-strike-env-label {
+  font-size: 0.75rem;
+  color: var(--sl-text-muted);
+}
+
+.sl-strike-env-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sl-primary);
+}
+
+/* -----------------------------------------
+   GRID UTILITIES
+----------------------------------------- */
+.sl-flex {
+  display: flex;
+}
+
+.sl-flex-between {
+  justify-content: space-between;
+}
+
+.sl-flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.sl-mt {
+  margin-top: 10px;
+}
+
+.sl-field-inline-btn {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+// File: css/style.css (Part 4/4)
+// Version: StrikeLog PWA v1.0
+// Timestamp: 2025-11-25 07:22 (UTC+2)
+// -----------------------------------------
+
+/* -----------------------------------------
+   ADDITIONAL UTILITY CLASSES & ANIMATIONS
+----------------------------------------- */
+
+/* Fade in */
+@keyframes sl-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sl-fade-in {
+  animation: sl-fade-in 0.3s ease-out;
+}
+
+/* Disable text selection on important elements */
+.sl-no-select {
+  user-select: none;
+}
+
+/* Hidden utility */
+.sl-hide {
+  display: none !important;
+}
+
+/* -----------------------------------------
+   RESPONSIVE ADJUSTMENTS
+----------------------------------------- */
+
+@media (max-width: 480px) {
+  .sl-card-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .sl-strike-fab {
+    padding: 14px 22px;
+    font-size: 1rem;
+  }
+
+  .sl-weather-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sl-form-grid-2,
+  .sl-form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sl-strike-meta-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sl-main {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .sl-strike-fab {
+    right: calc(50% - 325px);
+  }
+}
+
+/* -----------------------------------------
+   ANIMATED TAB HIGHLIGHT (Optional aesthetic)
+----------------------------------------- */
+.sl-tab {
+  position: relative;
+}
+
+.sl-tab-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  background: var(--sl-primary);
+  animation: sl-tab-underline 0.25s ease-out;
+}
+
+@keyframes sl-tab-underline {
+  from { width: 0; }
+  to { width: 60%; }
+}
+
+/* -----------------------------------------
+   SPECIAL STATES
+----------------------------------------- */
+.sl-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Danger text */
+.sl-text-danger {
+  color: var(--sl-danger);
+}
+
+/* Muted text */
+.sl-text-muted {
+  color: var(--sl-text-muted);
+}
+
+/* -----------------------------------------
+   MAP CUSTOM OVERLAY STYLES (future Leaflet)
+----------------------------------------- */
+
+.leaflet-container {
+  background: #0f172a !important;
+}
+
+.leaflet-bar a {
+  background: #1e293b !important;
+  color: var(--sl-primary) !important;
+  border: 1px solid var(--sl-border) !important;
+}
+
+.leaflet-bar a:hover {
+  background: #334155 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(2, 6, 23, 0.7) !important;
+  color: var(--sl-text-muted) !important;
+}
+
+.leaflet-popup-content {
+  background: #0f172a;
+  color: var(--sl-text);
+}
+
+.leaflet-popup-tip {
+  background: #0f172a;
+}
+
+/* -----------------------------------------
+   END OF STYLE.CSS
+----------------------------------------- */
