@@ -1,40 +1,15 @@
-// File: css/style.css
-// Version: StrikeLog PWA v1.0
-// Timestamp: 2025-11-25 07:22 (UTC+2)
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-25 22:41 (UTC+2)
 // -----------------------------------------
 
-/* -----------------------------------------
-   GLOBAL VARIABLES (DARK THEME)
------------------------------------------ */
-:root {
-  --sl-bg: #020617;
-  --sl-bg-card: #0f172a;
-  --sl-bg-card-alt: #1e293b;
-  --sl-bg-elevated: #0b1220;
+/* ================================
+   GLOBAL RESET + BASE SETTINGS
+   ================================ */
 
-  --sl-text: #e2e8f0;
-  --sl-text-muted: #94a3b8;
-  --sl-border: #1e293b;
-
-  --sl-primary: #0ea5e9;
-  --sl-primary-hover: #38bdf8;
-
-  --sl-accent: #22d3ee;
-  --sl-danger: #ef4444;
-  --sl-danger-hover: #f87171;
-  --sl-success: #22c55e;
-
-  --sl-card-radius: 12px;
-  --sl-pad: 14px;
-
-  --sl-font-main: 'Inter', sans-serif;
-  --sl-font-title: 'Orbitron', sans-serif;
-}
-
-/* -----------------------------------------
-   RESET
------------------------------------------ */
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -43,637 +18,502 @@
 html, body {
   width: 100%;
   height: 100%;
-  background: var(--sl-bg);
-  color: var(--sl-text);
-  font-family: var(--sl-font-main);
-  -webkit-font-smoothing: antialiased;
-  overscroll-behavior-y: none;
+  background: #020617; /* Black Ice pure black */
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;     /* Larger base font for night readability */
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  padding-bottom: 140px; /* Ensure FAB never blocks inputs */
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Scroll smoothing */
+html {
   scroll-behavior: smooth;
 }
 
-button, input, select, textarea {
-  font-family: inherit;
-  font-size: 1rem;
-  color: var(--sl-text);
-  background: transparent;
-  border: none;
-  outline: none;
-}
+/* ================================
+   TYPOGRAPHY SYSTEM
+   ================================ */
 
-/* -----------------------------------------
-   APP LAYOUT
------------------------------------------ */
-.sl-body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.sl-app {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-/* -----------------------------------------
-   TOP APP BAR
------------------------------------------ */
-.sl-appbar {
-  background: #0f172a;
-  border-bottom: 1px solid var(--sl-border);
-  padding: 10px 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sl-appbar-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.sl-logo-dot {
-  width: 12px;
-  height: 12px;
-  background: var(--sl-primary);
-  border-radius: 50%;
-}
-
-.sl-title-block .sl-title {
-  font-family: var(--sl-font-title);
-  font-size: 1.25rem;
+h1, h2, h3, h4 {
+  font-family: 'Orbitron', sans-serif;
   letter-spacing: 0.5px;
+  color: #00e7ff; /* Neon cyan accent */
+  font-weight: 700;
 }
 
-.sl-subtitle {
-  font-size: 0.7rem;
-  color: var(--sl-text-muted);
+h1 { font-size: 28px; }
+h2 { font-size: 24px; }
+h3 { font-size: 21px; }
+h4 { font-size: 18px; }
+
+/* Labels */
+.sl-label,
+.sl-label-sm {
+  color: #a7b4c7;
+  font-weight: 600;
 }
 
-/* Icons on right side */
-.sl-icon-btn {
-  background: none;
-  border: none;
-  padding: 6px;
-  border-radius: 8px;
-  color: var(--sl-text-muted);
+.sl-label {
+  font-size: 16px;
+  margin-bottom: 6px;
 }
 
-.sl-icon-btn:hover {
-  background: #1e293b;
-  color: var(--sl-primary-hover);
+.sl-label-sm {
+  font-size: 14px;
+  opacity: 0.85;
 }
 
-/* -----------------------------------------
-   MAIN CONTENT
------------------------------------------ */
-.sl-main {
-  flex: 1;
-  overflow-y: auto;
-  padding-bottom: 70px; /* for FAB spacing */
+/* General text helpers */
+.sl-text-muted {
+  color: #93a4b8;
+  opacity: 0.85;
 }
 
-/* -----------------------------------------
-   TAB NAVIGATION
------------------------------------------ */
-.sl-tabbar {
-  display: flex;
-  justify-content: space-around;
-  background: #0f172a;
-  border-bottom: 1px solid var(--sl-border);
+.sl-text-danger {
+  color: #ff4f4f;
 }
 
-.sl-tab {
-  flex: 1;
-  padding: 8px 0;
-  text-align: center;
-  color: var(--sl-text-muted);
-  font-size: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 2px solid transparent;
+/* Strong emphasis */
+b, strong {
+  font-weight: 700;
 }
 
-.sl-tab-active {
-  color: var(--sl-primary);
-  border-bottom-color: var(--sl-primary);
-}
+/* ===========================================
+   CARD SYSTEM — (Big padding, thick borders,
+   soft glow, BlackIce NightOps aesthetic)
+   =========================================== */
 
-/* -----------------------------------------
-   VIEWS
------------------------------------------ */
-.sl-views-wrapper {
-  padding: 14px;
-}
-
-.sl-view {
-  display: none;
-}
-
-.sl-view-active {
-  display: block;
-}
-
-/* -----------------------------------------
-   SECTIONS & TITLES
------------------------------------------ */
-.sl-section-title {
-  font-family: var(--sl-font-title);
-  font-size: 1.1rem;
-  margin-bottom: 14px;
-  color: var(--sl-primary);
-}
-
-.sl-section {
-  margin-bottom: 20px;
-}
-
-/* -----------------------------------------
-   CARD COMPONENT
------------------------------------------ */
 .sl-card {
-  background: var(--sl-bg-card);
-  border: 1px solid var(--sl-border);
-  border-radius: var(--sl-card-radius);
-  margin-bottom: 20px;
+  background: #0a1220;
+  border: 2px solid #1e293b;   /* Thick card border */
+  border-radius: 22px;         /* XL radius */
+  padding: 18px;
+  margin: 16px;
+  box-shadow: 0 0 18px rgba(0, 231, 255, 0.12); /* soft cyan glow */
 }
 
 .sl-card-header {
-  padding: var(--sl-pad);
-  border-bottom: 1px solid var(--sl-border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sl-card-header h3 {
-  font-family: var(--sl-font-title);
-  font-size: 1rem;
-  color: var(--sl-primary);
+  margin-bottom: 14px;
 }
 
 .sl-card-body {
-  padding: var(--sl-pad);
-}
-
-.sl-card-header-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 14px;  /* consistent spacing between elements */
 }
 
-/* -----------------------------------------
-   FORM GRID
------------------------------------------ */
-.sl-form-grid {
-  display: grid;
-  gap: 16px;
+/* ===========================================
+   INPUTS — thick borders, glow on focus
+   =========================================== */
+
+.sl-input,
+.sl-textarea,
+select.sl-input {
+  width: 100%;
+  padding: 14px 14px;
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 18px; /* rounded XL */
+  color: #ffffff;
+  font-size: 17px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
+
+.sl-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.sl-input:focus,
+.sl-textarea:focus,
+select.sl-input:focus {
+  border-color: #00e7ff;
+  box-shadow: 0 0 12px rgba(0, 231, 255, 0.25);
+}
+
+/* Placeholder */
+::placeholder {
+  color: #6e7a8f;
+  opacity: 0.8;
+}
+
+/* ===========================================
+   GRID SYSTEM
+   =========================================== */
 
 .sl-form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 14px;
 }
 
-.sl-form-grid-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-}
-
-/* Responsive collapse */
-@media (max-width: 600px) {
-  .sl-form-grid-2,
-  .sl-form-grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* -----------------------------------------
-   FORM FIELDS
------------------------------------------ */
-.sl-field {
+.sl-flex {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
 }
 
-.sl-label {
-  font-size: 0.8rem;
-  color: var(--sl-text-muted);
-}
-
-.sl-input,
-.sl-select,
-.sl-textarea {
-  background: var(--sl-bg-card-alt);
-  padding: 10px;
-  border-radius: 8px;
-  color: var(--sl-text);
-  border: 1px solid var(--sl-border);
-}
-
-.sl-input-file {
-  background: var(--sl-bg-card-alt);
-  padding: 6px;
-  border-radius: 8px;
-}
-
-.sl-input-row {
+.sl-flex-between {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.sl-btn-compact {
-  padding: 6px 10px;
-  font-size: 0.8rem;
+.sl-mt { margin-top: 16px; }
+.sl-mb { margin-bottom: 16px; }
+
+/* ===========================================
+   TAB NAVIGATION — large + bold + glow active
+   =========================================== */
+
+.sl-tabs {
+  display: flex;
+  justify-content: space-around;
+  background: #07101d;
+  padding: 14px 0;
+  border-bottom: 2px solid #1e293b;
 }
-// File: css/style.css (Part 2/4)
-// Version: StrikeLog PWA v1.0
-// Timestamp: 2025-11-25 07:22 (UTC+2)
+
+.sl-tab {
+  font-size: 18px;
+  padding: 10px 14px;
+  font-weight: 700;
+  color: #93a4b8;
+}
+
+.sl-tab-active {
+  color: #00e7ff;
+  border-bottom: 3px solid #00e7ff;
+  text-shadow: 0 0 8px rgba(0, 231, 255, 0.4);
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-25 22:41 (UTC+2)
 // -----------------------------------------
 
-/* -----------------------------------------
-   BUTTONS
------------------------------------------ */
+/* ===========================================
+   BUTTONS — XL radius, bold, glow, thick borders
+   =========================================== */
+
 .sl-btn-primary {
-  background: var(--sl-primary);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-  border: 1px solid var(--sl-primary-hover);
+  width: 100%;
+  padding: 14px;
+  background: #00e7ff;
+  color: #000000;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  border-radius: 22px;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.35);
+  transition: opacity 0.2s, box-shadow 0.3s;
 }
-.sl-btn-primary:hover {
-  background: var(--sl-primary-hover);
+
+.sl-btn-primary:active {
+  opacity: 0.75;
+  box-shadow: 0 0 22px rgba(0, 231, 255, 0.5);
 }
 
 .sl-btn-secondary {
-  background: #1e293b;
-  color: var(--sl-text);
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--sl-border);
+  padding: 12px 14px;
+  background: #0d1627;
+  color: #00e7ff;
+  border: 2px solid #00e7ff;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 18px;
+  box-shadow: 0 0 10px rgba(0, 231, 255, 0.18);
 }
-.sl-btn-secondary:hover {
-  background: #334155;
+
+.sl-btn-secondary:active {
+  background: #112034;
 }
 
 .sl-btn-danger {
-  background: var(--sl-danger);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 600;
-}
-.sl-btn-danger:hover {
-  background: var(--sl-danger-hover);
+  width: 100%;
+  padding: 14px;
+  background: #ff4f4f;
+  color: #ffffff;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 22px;
+  box-shadow: 0 0 14px rgba(255, 79, 79, 0.35);
 }
 
 .sl-btn-text {
-  background: none;
-  color: var(--sl-primary);
-  padding: 6px 10px;
-  font-size: 0.85rem;
-}
-.sl-btn-text:hover {
-  text-decoration: underline;
+  background: transparent;
+  border: none;
+  color: #00e7ff;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-/* -----------------------------------------
-   MISSION CONTROLS
------------------------------------------ */
-.sl-mission-controls {
+/* ===========================================
+   FLOATING "STRIKE" BUTTON (FAB)
+   =========================================== */
+
+.sl-strike-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 26px;
+  background: #00e7ff;
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  padding: 18px 26px;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: 
+    0 0 20px rgba(0, 231, 255, 0.55),
+    0 0 8px rgba(0, 231, 255, 0.4);
+  z-index: 900;
+  transition: transform 0.2s, box-shadow 0.4s;
+}
+
+.sl-strike-fab:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 26px rgba(0, 231, 255, 0.9);
+}
+
+/* ===========================================
+   STRIKE SHEET — NightOps sliding panel
+   =========================================== */
+
+.sl-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 880;
+  transition: opacity 0.25s;
+}
+
+.sl-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 82%;
+  background: #0a1220;
+  border-top: 3px solid #00e7ff;
+  border-radius: 22px 22px 0 0;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 900;
+  box-shadow: 0 -2px 24px rgba(0, 231, 255, 0.25);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sl-sheet-open {
+  transform: translateY(0%);
+}
+
+.sl-sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.sl-sheet-body {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.sl-mission-meta {
+.sl-sheet-footer {
+  margin-top: 16px;
   display: flex;
   justify-content: space-between;
-  background: var(--sl-bg-card-alt);
-  padding: 12px;
-  border-radius: 10px;
+  gap: 12px;
 }
 
-.sl-mission-status {
-  font-weight: 600;
-  font-size: 0.85rem;
+/* Hidden class (global) */
+.sl-hidden {
+  display: none !important;
 }
 
-.sl-mission-status-idle {
-  color: var(--sl-text-muted);
-}
+/* ===========================================
+   WEATHER GRID — clean layout
+   =========================================== */
 
-.sl-mission-status-active {
-  color: var(--sl-success);
-}
-
-.sl-mission-duration {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-/* -----------------------------------------
-   WEATHER GRID
------------------------------------------ */
 .sl-weather-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
 
-@media(max-width: 600px) {
-  .sl-weather-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .sl-weather-item {
-  background: var(--sl-bg-card-alt);
-  border-radius: 10px;
-  padding: 12px;
-  border: 1px solid var(--sl-border);
+  text-align: center;
+  padding: 14px;
+  border-radius: 18px;
+  background: #0d1627;
+  border: 2px solid #1e293b;
 }
 
 .sl-weather-label {
-  font-size: 0.75rem;
-  color: var(--sl-text-muted);
+  font-size: 14px;
+  color: #a7b4c7;
   margin-bottom: 4px;
 }
 
 .sl-weather-value {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--sl-primary);
+  font-size: 18px;
+  font-weight: 700;
+  color: #00e7ff;
 }
 
 .sl-weather-sub {
-  font-size: 0.75rem;
-  color: var(--sl-text-muted);
+  font-size: 13px;
+  color: #93a4b8;
 }
 
-/* -----------------------------------------
-   STRIKE LIST
------------------------------------------ */
-.sl-strike-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+/* ===========================================
+   MISSION STATUS
+   =========================================== */
 
-.sl-strike-item {
-  background: var(--sl-bg-card-alt);
-  padding: 14px;
-  border-radius: var(--sl-card-radius);
-  border: 1px solid var(--sl-border);
-}
-
-.sl-strike-header {
+.sl-mission-meta {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 6px;
+  padding: 12px 0;
 }
 
-.sl-strike-species {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--sl-primary);
+.sl-mission-status {
+  font-weight: 800;
 }
 
-.sl-strike-time {
-  font-size: 0.75rem;
-  color: var(--sl-text-muted);
+.sl-mission-status-idle {
+  color: #93a4b8;
 }
 
-.sl-strike-meta {
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: var(--sl-text-muted);
+.sl-mission-status-active {
+  color: #00e7ff;
+  text-shadow: 0 0 8px rgba(0, 231, 255, 0.4);
 }
+
+.sl-mission-duration {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* ===========================================
+   EMPTY STATE
+   =========================================== */
 
 .sl-empty {
   text-align: center;
-  padding: 20px;
-  color: var(--sl-text-muted);
+  color: #77859d;
+  font-size: 16px;
+  margin: 12px 0;
 }
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-25 22:41 (UTC+2)
+// -----------------------------------------
 
-/* -----------------------------------------
-   SPOTS LIST
------------------------------------------ */
+/* ===========================================
+   SPOT LIST — card layout inside Spots tab
+   =========================================== */
+
 .sl-spot-list {
   list-style: none;
-  padding: 0;
-  margin-top: 14px;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
 .sl-spot-item {
-  background: var(--sl-bg-card-alt);
-  border-radius: var(--sl-card-radius);
-  padding: 14px;
-  border: 1px solid var(--sl-border);
+  background: #0d1627;
+  padding: 16px;
+  border-radius: 22px;
+  border: 2px solid #1e293b;
+  box-shadow: 0 0 10px rgba(0, 231, 255, 0.12);
 }
 
-.sl-spot-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.sl-spot-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #00e7ff;
+  margin-bottom: 6px;
 }
 
-.sl-spot-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--sl-primary);
+.sl-spot-meta {
+  font-size: 15px;
+  color: #93a4b8;
+  line-height: 1.45;
 }
 
 .sl-spot-actions {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  margin-top: 12px;
 }
 
-.sl-spot-meta {
-  margin-top: 10px;
-  font-size: 0.8rem;
-  color: var(--sl-text-muted);
-  line-height: 1.4;
-}
+/* ===========================================
+   LOGBOOK LIST — strike cards
+   =========================================== */
 
-/* -----------------------------------------
-   MAP
------------------------------------------ */
-.sl-map-card {
-  padding-bottom: 0;
-}
-
-.sl-map-container {
-  height: 260px;
-  border: 1px solid var(--sl-border);
-  border-radius: var(--sl-card-radius);
-  overflow: hidden;
-  background: #0f172a;
-}
-
-.sl-map-placeholder {
-  height: 100%;
+.sl-strike-list {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--sl-text-muted);
-  font-size: 0.85rem;
+  gap: 16px;
 }
 
-.sl-map-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-size: 0.8rem;
-  color: var(--sl-text-muted);
+.sl-strike-item {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.12);
 }
 
-.sl-map-coords,
-.sl-map-spot {
-  font-weight: 600;
-  color: var(--sl-primary);
-}
-
-/* -----------------------------------------
-   FLOATING ACTION BUTTON — STRIKE
------------------------------------------ */
-.sl-strike-fab {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  background: var(--sl-danger);
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 16px 26px;
+.sl-strike-header {
+  font-size: 18px;
   font-weight: 700;
-  font-size: 1.1rem;
-  z-index: 2000;
-  box-shadow: 0 0 12px rgba(239,68,68,0.45);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: background 0.2s ease;
+  color: #00e7ff;
+  margin-bottom: 6px;
 }
 
-.sl-strike-fab:hover {
-  background: var(--sl-danger-hover);
+.sl-strike-line {
+  font-size: 15px;
+  color: #c3d1df;
+  margin-bottom: 2px;
 }
 
-.sl-strike-fab-label {
-  font-family: var(--sl-font-title);
-  letter-spacing: 0.5px;
-}
-// File: css/style.css (Part 3/4)
-// Version: StrikeLog PWA v1.0
-// Timestamp: 2025-11-25 07:22 (UTC+2)
-// -----------------------------------------
-
-/* -----------------------------------------
-   STRIKE SHEET (BOTTOM MODAL)
------------------------------------------ */
-.sl-sheet-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(2, 6, 23, 0.65);
-  backdrop-filter: blur(4px);
-  z-index: 2500;
-}
-
-.sl-hidden {
-  display: none !important;
-}
-
-.sl-sheet {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-height: 90vh;
-  background: var(--sl-bg-card);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: 1px solid var(--sl-border);
-  z-index: 3000;
-  overflow-y: auto;
-  animation: sl-slide-up 0.25s ease-out;
-}
-
-@keyframes sl-slide-up {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.sl-sheet-header {
-  padding: var(--sl-pad);
-  border-bottom: 1px solid var(--sl-border);
+.sl-strike-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin: 10px 0;
 }
 
-.sl-sheet-header h2 {
-  font-family: var(--sl-font-title);
-  font-size: 1.1rem;
-  color: var(--sl-primary);
+.sl-strike-meta div {
+  font-size: 14px;
+  color: #93a4b8;
 }
 
-.sl-sheet-body {
-  padding: var(--sl-pad);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.sl-sheet-footer {
-  padding: var(--sl-pad);
-  border-top: 1px solid var(--sl-border);
-  display: flex;
-  justify-content: space-between;
-}
-
-/* -----------------------------------------
-   STRIKE META ROW
------------------------------------------ */
-.sl-strike-meta-row {
-  display: flex;
-  justify-content: space-between;
-  background: var(--sl-bg-card-alt);
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--sl-border);
-}
-
-.sl-strike-meta-value {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--sl-primary);
-}
-
-/* -----------------------------------------
+/* ===========================================
    PHOTO PREVIEW
------------------------------------------ */
+   =========================================== */
+
 .sl-photo-preview {
-  border: 1px solid var(--sl-border);
-  padding: 8px;
-  border-radius: 12px;
-  background: var(--sl-bg-card-alt);
   margin-top: 6px;
-  max-height: 180px;
+  border-radius: 22px;
   overflow: hidden;
+  border: 2px solid #1e293b;
+  box-shadow: 0 0 12px rgba(0, 231, 255, 0.12);
 }
 
 .sl-photo-preview img {
@@ -682,256 +522,1337 @@ button, input, select, textarea {
   display: block;
 }
 
-/* -----------------------------------------
-   TOAST / SNACKBAR
------------------------------------------ */
+/* ===========================================
+   MAP PLACEHOLDER (mapView)
+   =========================================== */
+
+.sl-map-container {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 231, 255, 0.12);
+}
+
+.sl-map-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #93a4b8;
+  gap: 6px;
+}
+
+.sl-map-placeholder div:first-child {
+  font-size: 2.8rem;
+}
+
+.sl-map-meta {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sl-map-coords {
+  font-size: 15px;
+  color: #a7b4c7;
+}
+
+/* ===========================================
+   HORIZONTAL SEPARATOR
+   =========================================== */
+
+.sl-separator {
+  width: 100%;
+  height: 2px;
+  background: #1e293b;
+  margin: 10px 0 14px 0;
+  border-radius: 4px;
+}
+
+/* ===========================================
+   SPACING UTILITIES
+   =========================================== */
+
+.sl-p-0 { padding: 0; }
+.sl-p-4 { padding: 4px; }
+.sl-p-8 { padding: 8px; }
+.sl-p-12 { padding: 12px; }
+.sl-p-16 { padding: 16px; }
+.sl-p-20 { padding: 20px; }
+
+.sl-m-0 { margin: 0; }
+.sl-m-4 { margin: 4px; }
+.sl-m-8 { margin: 8px; }
+.sl-m-12 { margin: 12px; }
+.sl-m-16 { margin: 16px; }
+.sl-m-20 { margin: 20px; }
+
+/* ===========================================
+   LIST SCROLL FIXES
+   =========================================== */
+
+.sl-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* To prevent FAB from covering bottom of lists */
+.sl-bottom-space {
+  height: 120px;
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-25 22:41 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   TOAST — notifications
+   =========================================== */
+
 .sl-toast {
   position: fixed;
-  bottom: 100px;
+  bottom: 120px;
   left: 50%;
   transform: translateX(-50%);
-  background: #0f172a;
-  color: var(--sl-text);
-  padding: 12px 18px;
-  border-radius: 10px;
-  border: 1px solid var(--sl-border);
-  box-shadow: 0 0 10px rgba(14,165,233,0.3);
-  z-index: 5000;
-  animation: sl-toast-slide 0.25s ease-out;
+  background: #0b1220;
+  color: #ffffff;
+  padding: 14px 22px;
+  border-radius: 18px;
+  border: 2px solid #00e7ff;
+  font-weight: 700;
+  font-size: 16px;
+  z-index: 950;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.25);
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
 }
 
-@keyframes sl-toast-slide {
-  from { transform: translate(-50%, 20px); opacity: 0; }
-  to { transform: translate(-50%, 0); opacity: 1; }
+.sl-toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
 }
 
-/* -----------------------------------------
-   INPUT DETAILS
------------------------------------------ */
-.sl-textarea {
-  resize: vertical;
-  min-height: 80px;
+/* ===========================================
+   MOON PHASE — styling
+   =========================================== */
+
+#moonPhaseIcon {
+  font-size: 46px !important;
+  text-shadow: 0 0 12px rgba(0, 231, 255, 0.35);
 }
 
-/* -----------------------------------------
-   SMALL LABELS / CHIPS
------------------------------------------ */
-.sl-label-sm {
-  font-size: 0.7rem;
-  color: var(--sl-text-muted);
+#moonPhaseName {
+  font-weight: 700;
 }
 
-.sl-chip {
-  padding: 3px 8px;
-  border-radius: 8px;
-  font-size: 0.7rem;
-  font-weight: 600;
+#moonIllumination {
+  font-size: 14px;
+  opacity: 0.85;
 }
 
-.sl-chip-muted {
-  background: #1e293b;
-  color: var(--sl-text-muted);
+/* ===========================================
+   TAB VIEW SWITCHING
+   =========================================== */
+
+.sl-view {
+  display: none;
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* -----------------------------------------
-   STRIKE ENVIRONMENT BLOCK
------------------------------------------ */
+.sl-view-active {
+  display: block;
+}
+
+/* Small fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================================
+   FAB PULSE ANIMATION (NightOps subtle glow)
+   =========================================== */
+
+@keyframes fabPulse {
+  0%   { box-shadow: 0 0 16px rgba(0, 231, 255, 0.55); }
+  50%  { box-shadow: 0 0 26px rgba(0, 231, 255, 0.75); }
+  100% { box-shadow: 0 0 16px rgba(0, 231, 255, 0.55); }
+}
+
+.sl-strike-fab {
+  animation: fabPulse 2.4s infinite;
+}
+
+/* ===========================================
+   STRIKE SHEET — Enhanced Strike metadata
+   =========================================== */
+
+.sl-strike-meta-row {
+  display: flex;
+  justify-content: space-between;
+  background: #0d1627;
+  padding: 12px;
+  border: 2px solid #1e293b;
+  border-radius: 18px;
+}
+
+.sl-strike-meta-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00e7ff;
+}
+
 .sl-strike-env-row {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .sl-strike-env-item {
   flex: 1;
-  background: var(--sl-bg-card-alt);
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid var(--sl-border);
-  margin-right: 10px;
-}
-
-.sl-strike-env-item:last-child {
-  margin-right: 0;
+  background: #0d1627;
+  padding: 12px;
+  border-radius: 18px;
+  border: 2px solid #1e293b;
 }
 
 .sl-strike-env-label {
-  font-size: 0.75rem;
-  color: var(--sl-text-muted);
+  color: #a7b4c7;
+  font-size: 13px;
+  margin-bottom: 4px;
 }
 
 .sl-strike-env-value {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--sl-primary);
+  font-size: 16px;
+  font-weight: 700;
+  color: #00e7ff;
 }
 
-/* -----------------------------------------
-   GRID UTILITIES
------------------------------------------ */
-.sl-flex {
+/* ===========================================
+   RESPONSIVE TWEAKS
+   =========================================== */
+
+/* Very small screens */
+@media (max-width: 380px) {
+  body {
+    font-size: 16px;
+  }
+
+  .sl-card {
+    padding: 14px;
+  }
+
+  .sl-btn-primary,
+  .sl-btn-secondary,
+  .sl-btn-danger {
+    font-size: 16px;
+  }
+
+  .sl-strike-fab {
+    bottom: 22px;
+    right: 20px;
+    padding: 16px 22px;
+  }
+}
+
+/* Medium screens */
+@media (min-width: 500px) {
+  .sl-sheet {
+    max-width: 480px;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+  }
+
+  .sl-sheet-open {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ===========================================
+   FINAL POLISH LAYER
+   =========================================== */
+
+/* Smoother scrolling for long lists */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #26384f;
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-26 23:07 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   SECTION TITLES (Mission, Weather, Moon, etc.)
+   =========================================== */
+
+.sl-section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00e7ff;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 6px rgba(0, 231, 255, 0.25);
+}
+
+/* ===========================================
+   MISSION CARD — Advanced Layout
+   =========================================== */
+
+.sl-mission-card {
+  background: #0a1220;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 20px;
+  margin: 16px;
+  box-shadow: 0 0 16px rgba(0, 231, 255, 0.15);
+}
+
+.sl-mission-row {
   display: flex;
-}
-
-.sl-flex-between {
   justify-content: space-between;
+  margin-bottom: 14px;
 }
 
-.sl-flex-center {
-  justify-content: center;
+.sl-mission-label {
+  font-size: 16px;
+  color: #a7b4c7;
+}
+
+.sl-mission-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00e7ff;
+}
+
+/* ===========================================
+   MISSION CONTROL BUTTON GROUP
+   =========================================== */
+
+.sl-mission-controls {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+/* ===========================================
+   WEATHER CARD — Version 2 (Component Upgrade)
+   =========================================== */
+
+.sl-weather-card {
+  background: #0a1220;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 20px;
+  margin: 16px;
+  box-shadow: 0 0 18px rgba(0, 231, 255, 0.18);
+}
+
+.sl-weather-grid-v2 {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 420px) {
+  .sl-weather-grid-v2 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sl-weather-box {
+  background: #0d1627;
+  padding: 14px;
+  border-radius: 18px;
+  border: 2px solid #1e293b;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 231, 255, 0.12);
+}
+
+.sl-weather-box-title {
+  font-size: 14px;
+  color: #a7b4c7;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sl-weather-box-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00e7ff;
+}
+
+.sl-weather-box-sub {
+  font-size: 14px;
+  color: #93a4b8;
+}
+
+/* ===========================================
+   WEATHER FOOTER — update button + timestamp
+   =========================================== */
+
+.sl-weather-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.sl-weather-updated {
+  font-size: 14px;
+  color: #93a4b8;
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-26 23:07 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   MOON PHASE CARD — Version 2 (Upgraded)
+   =========================================== */
+
+.sl-moon-card {
+  background: #0a1220;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 20px;
+  margin: 16px;
+  box-shadow: 0 0 18px rgba(0, 231, 255, 0.18);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.sl-mt {
-  margin-top: 10px;
+.sl-moon-left {
+  display: flex;
+  flex-direction: column;
 }
 
-.sl-field-inline-btn {
-  display: flex;
-  gap: 10px;
-  align-items: flex-end;
+.sl-moon-icon {
+  font-size: 48px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 12px rgba(0, 231, 255, 0.35);
 }
-// File: css/style.css (Part 4/4)
-// Version: StrikeLog PWA v1.0
-// Timestamp: 2025-11-25 07:22 (UTC+2)
+
+.sl-moon-phase-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.sl-moon-phase-illum {
+  font-size: 14px;
+  color: #93a4b8;
+}
+
+.sl-moon-refresh-btn {
+  padding: 10px 16px;
+  background: #0d1627;
+  border: 2px solid #00e7ff;
+  color: #00e7ff;
+  border-radius: 18px;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 231, 255, 0.15);
+}
+
+/* ===========================================
+   STRIKE SUMMARY BLOCKS
+   (strike time / location / lunar snapshot)
+   =========================================== */
+
+.sl-strike-summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.sl-strike-summary-block {
+  flex: 1;
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 18px;
+  padding: 12px;
+}
+
+.sl-strike-summary-label {
+  font-size: 14px;
+  color: #a7b4c7;
+  margin-bottom: 4px;
+}
+
+.sl-strike-summary-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: #00e7ff;
+}
+
+/* ===========================================
+   CHIPS / TAG ELEMENTS (Depth, Retrieve Type, etc.)
+   =========================================== */
+
+.sl-chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 14px;
+  border: 2px solid #00e7ff;
+  color: #00e7ff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  background: rgba(0, 231, 255, 0.08);
+  box-shadow: 0 0 8px rgba(0, 231, 255, 0.2);
+}
+
+.sl-chip-danger {
+  border-color: #ff4f4f;
+  color: #ff4f4f;
+  background: rgba(255, 79, 79, 0.12);
+  box-shadow: 0 0 8px rgba(255, 79, 79, 0.2);
+}
+
+/* ===========================================
+   FORM FIELD GROUPS — Clean sections
+   =========================================== */
+
+.sl-field-group {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 12px rgba(0, 231, 255, 0.12);
+}
+
+.sl-field-group-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #00e7ff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px rgba(0, 231, 255, 0.25);
+}
+
+/* ===========================================
+   RETRIEVE TECHNIQUE ROW (UI improvement)
+   =========================================== */
+
+.sl-retrieve-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.sl-retrieve-select {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 18px;
+  padding: 12px;
+  font-weight: 600;
+  color: #00e7ff;
+}
+
+/* ===========================================
+   DEPTH CATEGORY ROW
+   =========================================== */
+
+.sl-depth-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.sl-depth-btn {
+  padding: 12px;
+  text-align: center;
+  border: 2px solid #1e293b;
+  border-radius: 18px;
+  font-weight: 700;
+  background: #0d1627;
+  color: #93a4b8;
+  box-shadow: 0 0 8px rgba(0, 231, 255, 0.12);
+}
+
+.sl-depth-btn-active {
+  border-color: #00e7ff;
+  color: #00e7ff;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.3);
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-26 23:07 (UTC+2)
 // -----------------------------------------
 
-/* -----------------------------------------
-   ADDITIONAL UTILITY CLASSES & ANIMATIONS
------------------------------------------ */
+/* ===========================================
+   SPOT CARDS — Version 2 (Premium layout)
+   =========================================== */
 
-/* Fade in */
-@keyframes sl-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.sl-spot-card {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.15);
 }
 
-.sl-fade-in {
-  animation: sl-fade-in 0.3s ease-out;
+.sl-spot-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-/* Disable text selection on important elements */
-.sl-no-select {
-  user-select: none;
+.sl-spot-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #00e7ff;
 }
 
-/* Hidden utility */
-.sl-hide {
-  display: none !important;
+.sl-spot-card-coords {
+  font-size: 14px;
+  color: #93a4b8;
+  margin-bottom: 8px;
 }
 
-/* -----------------------------------------
-   RESPONSIVE ADJUSTMENTS
------------------------------------------ */
-
-@media (max-width: 480px) {
-  .sl-card-header h3 {
-    font-size: 0.95rem;
-  }
-
-  .sl-strike-fab {
-    padding: 14px 22px;
-    font-size: 1rem;
-  }
-
-  .sl-weather-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .sl-form-grid-2,
-  .sl-form-grid-3 {
-    grid-template-columns: 1fr;
-  }
-
-  .sl-strike-meta-row {
-    flex-direction: column;
-    gap: 10px;
-  }
+.sl-spot-card-meta {
+  font-size: 15px;
+  color: #c3d1df;
+  line-height: 1.45;
 }
 
-@media (min-width: 768px) {
-  .sl-main {
-    max-width: 650px;
-    margin: 0 auto;
-  }
-
-  .sl-strike-fab {
-    right: calc(50% - 325px);
-  }
+.sl-spot-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
 }
 
-/* -----------------------------------------
-   ANIMATED TAB HIGHLIGHT (Optional aesthetic)
------------------------------------------ */
+/* ===========================================
+   LOGBOOK STRIKE CARDS — Version 2
+   =========================================== */
+
+.sl-log-card {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 16px rgba(0, 231, 255, 0.15);
+}
+
+.sl-log-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sl-log-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #00e7ff;
+}
+
+.sl-log-time {
+  font-size: 15px;
+  color: #93a4b8;
+}
+
+.sl-log-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.sl-log-meta-item {
+  padding: 10px;
+  background: #091423;
+  border-radius: 16px;
+  border: 2px solid #1e293b;
+}
+
+.sl-log-meta-label {
+  font-size: 13px;
+  color: #93a4b8;
+  margin-bottom: 2px;
+}
+
+.sl-log-meta-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00e7ff;
+}
+
+/* ===========================================
+   STRIKE PHOTO SECTION — Version 2
+   =========================================== */
+
+.sl-photo-section {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 16px;
+  margin-top: 6px;
+  box-shadow: 0 0 12px rgba(0, 231, 255, 0.15);
+}
+
+.sl-photo-preview-v2 {
+  margin-top: 10px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 2px solid #1e293b;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.15);
+}
+
+.sl-photo-preview-v2 img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===========================================
+   STRIKE SHEET — FIELD GROUP V2
+   =========================================== */
+
+.sl-strike-field-group {
+  background: #0d1627;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.15);
+}
+
+.sl-strike-field-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #00e7ff;
+  margin-bottom: 6px;
+  text-shadow: 0 0 6px rgba(0, 231, 255, 0.25);
+}
+
+/* Dual-column block */
+.sl-strike-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ===========================================
+   ENHANCED INPUT STYLING FOR STRIKE SHEET
+   =========================================== */
+
+.sl-strike-input {
+  background: #101b2f;
+  padding: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 18px;
+  border: 2px solid #1e293b;
+  color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sl-strike-input:focus {
+  border-color: #00e7ff;
+  box-shadow: 0 0 12px rgba(0, 231, 255, 0.25);
+}
+
+/* ===========================================
+   NOTES FIELD (taller)
+   =========================================== */
+
+.sl-notes-area {
+  min-height: 120px;
+  background: #101b2f;
+  color: #ffffff;
+  border-radius: 18px;
+  border: 2px solid #1e293b;
+  padding: 14px;
+  font-size: 17px;
+  resize: vertical;
+}
+
+/* ===========================================
+   LOGBOOK EXPORT BUTTONS
+   =========================================== */
+
+.sl-log-export-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  gap: 12px;
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-26 23:07 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   TOP HEADER — cleaner & more readable
+   =========================================== */
+
+.sl-header {
+  width: 100%;
+  padding: 18px 0;
+  text-align: center;
+  background: #07101d;
+  border-bottom: 2px solid #1e293b;
+  font-family: 'Orbitron', sans-serif;
+  color: #00e7ff;
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 231, 255, 0.35);
+  letter-spacing: 1px;
+}
+
+/* ===========================================
+   TAB BAR — NightOps V2 (thicker, glow)
+   =========================================== */
+
+.sl-tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #07101d;
+  padding: 14px 0;
+  border-bottom: 3px solid #1e293b;
+  box-shadow: 0 2px 18px rgba(0, 231, 255, 0.08);
+}
+
 .sl-tab {
+  font-size: 18px;
+  font-weight: 800;
+  padding: 10px 14px;
+  color: #93a4b8;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.sl-tab-active {
+  color: #00e7ff;
+  text-shadow: 0 0 10px rgba(0, 231, 255, 0.45);
+  border-bottom: 3px solid #00e7ff;
+}
+
+/* Touch feedback */
+.sl-tab:active {
+  opacity: 0.75;
+}
+
+/* ===========================================
+   MAP SECTION — Version 2 (NightOps upgrade)
+   =========================================== */
+
+.sl-map-card {
+  background: #0a1220;
+  padding: 20px;
+  border: 2px solid #1e293b;
+  border-radius: 22px;
+  margin: 16px;
+  box-shadow: 0 0 18px rgba(0, 231, 255, 0.15);
+}
+
+.sl-map-container-v2 {
   position: relative;
+  height: 300px;
+  background: #0d1627;
+  border-radius: 22px;
+  border: 2px solid #1e293b;
+  overflow: hidden;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.12);
 }
 
-.sl-tab-active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  width: 60%;
-  height: 2px;
-  background: var(--sl-primary);
-  animation: sl-tab-underline 0.25s ease-out;
+.sl-map-placeholder-icon {
+  font-size: 48px;
+  color: #00e7ff;
+  text-shadow: 0 0 12px rgba(0, 231, 255, 0.36);
 }
 
-@keyframes sl-tab-underline {
-  from { width: 0; }
-  to { width: 60%; }
+.sl-map-placeholder-text {
+  font-size: 16px;
+  color: #93a4b8;
+  margin-top: 8px;
 }
 
-/* -----------------------------------------
-   SPECIAL STATES
------------------------------------------ */
-.sl-disabled {
-  opacity: 0.5;
-  pointer-events: none;
+.sl-map-meta-v2 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  color: #93a4b8;
+  font-size: 15px;
 }
 
-/* Danger text */
-.sl-text-danger {
-  color: var(--sl-danger);
+.sl-map-meta-v2 button {
+  padding: 10px 14px;
+  border-radius: 18px;
+  background: #0d1627;
+  border: 2px solid #00e7ff;
+  color: #00e7ff;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 231, 255, 0.15);
 }
 
-/* Muted text */
-.sl-text-muted {
-  color: var(--sl-text-muted);
+/* ===========================================
+   BOTTOM SAFE SPACE (so FAB doesn't block)
+   =========================================== */
+
+.sl-bottom-safe {
+  height: 140px;
 }
 
-/* -----------------------------------------
-   MAP CUSTOM OVERLAY STYLES (future Leaflet)
------------------------------------------ */
+/* ===========================================
+   EXTRA POLISH — hover/glow states
+   =========================================== */
 
-.leaflet-container {
-  background: #0f172a !important;
+.sl-card:hover {
+  box-shadow: 0 0 18px rgba(0, 231, 255, 0.22);
 }
 
-.leaflet-bar a {
-  background: #1e293b !important;
-  color: var(--sl-primary) !important;
-  border: 1px solid var(--sl-border) !important;
+.sl-weather-box:hover {
+  box-shadow: 0 0 16px rgba(0, 231, 255, 0.25);
 }
 
-.leaflet-bar a:hover {
-  background: #334155 !important;
+.sl-spot-card:hover,
+.sl-log-card:hover {
+  box-shadow: 0 0 20px rgba(0, 231, 255, 0.22);
 }
 
-.leaflet-control-attribution {
-  background: rgba(2, 6, 23, 0.7) !important;
-  color: var(--sl-text-muted) !important;
+/* Buttons glow slight increase on hover */
+.sl-btn-primary:hover {
+  box-shadow: 0 0 20px rgba(0, 231, 255, 0.45);
 }
 
-.leaflet-popup-content {
-  background: #0f172a;
-  color: var(--sl-text);
+.sl-btn-secondary:hover {
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.25);
 }
 
-.leaflet-popup-tip {
-  background: #0f172a;
+.sl-btn-danger:hover {
+  box-shadow: 0 0 18px rgba(255, 79, 79, 0.55);
 }
 
-/* -----------------------------------------
-   END OF STYLE.CSS
------------------------------------------ */
+/* Depth chip hover */
+.sl-depth-btn:hover {
+  border-color: #00e7ff;
+  color: #00e7ff;
+}
+
+/* ===========================================
+   FOCUS INDICATORS (A11Y NIGHT MODE)
+   =========================================== */
+
+.sl-input:focus,
+.sl-textarea:focus,
+.sl-strike-input:focus {
+  outline: none !important;
+  border-color: #00e7ff !important;
+  box-shadow: 0 0 14px rgba(0, 231, 255, 0.25);
+}
+
+/* ===========================================
+   COMPONENT LAYER COMPLETE
+   =========================================== */
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:11 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   FAB PULSE V2 — smoother, deeper cyan
+   =========================================== */
+
+@keyframes sl-fabPulse {
+  0%   { box-shadow: 0 0 18px rgba(0, 231, 255, 0.55); }
+  50%  { box-shadow: 0 0 32px rgba(0, 231, 255, 0.85); }
+  100% { box-shadow: 0 0 18px rgba(0, 231, 255, 0.55); }
+}
+
+.sl-strike-fab {
+  animation: sl-fabPulse 2.6s ease-in-out infinite;
+}
+
+/* ===========================================
+   STRIKE SHEET — Slide Up Animation V2
+   (more natural easing for mobile fingers)
+   =========================================== */
+
+@keyframes sl-sheetSlideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(8%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sl-sheetSlideDown {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(8%);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.sl-sheet-open {
+  animation: sl-sheetSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sl-sheet-close {
+  animation: sl-sheetSlideDown 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===========================================
+   BACKDROP FADE
+   =========================================== */
+
+@keyframes sl-backdropFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes sl-backdropFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.sl-sheet-backdrop {
+  animation: sl-backdropFadeIn 0.25s ease-out;
+}
+
+.sl-sheet-backdrop-hide {
+  animation: sl-backdropFadeOut 0.2s ease-in;
+}
+
+/* ===========================================
+   TOAST NOTIFICATIONS — smooth fade
+   =========================================== */
+
+@keyframes sl-toastFadeIn {
+  0%   { opacity: 0; transform: translate(-50%, 10px); }
+  100% { opacity: 1; transform: translate(-50%, -4px); }
+}
+
+@keyframes sl-toastFadeOut {
+  0%   { opacity: 1; transform: translate(-50%, -4px); }
+  100% { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+.sl-toast-show {
+  animation: sl-toastFadeIn 0.3s ease-out forwards;
+}
+
+.sl-toast-hide {
+  animation: sl-toastFadeOut 0.3s ease-in forwards;
+}
+
+/* ===========================================
+   TAB TRANSITION GLOW + SLIDE FEEL
+   =========================================== */
+
+@keyframes sl-tabGlow {
+  0%   { text-shadow: 0 0 4px rgba(0, 231, 255, 0.2); }
+  50%  { text-shadow: 0 0 14px rgba(0, 231, 255, 0.6); }
+  100% { text-shadow: 0 0 6px rgba(0, 231, 255, 0.35); }
+}
+
+.sl-tab-active {
+  animation: sl-tabGlow 0.35s ease-out;
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:11 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   BUTTON TAP RIPPLE (NightOps cyan ripple)
+   =========================================== */
+
+@keyframes sl-buttonRipple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 231, 255, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(0, 231, 255, 0);
+  }
+}
+
+.sl-btn-primary:active,
+.sl-btn-secondary:active,
+.sl-btn-danger:active {
+  animation: sl-buttonRipple 0.35s ease-out;
+}
+
+/* ===========================================
+   CARD PULSE (subtle glow on new cards)
+   =========================================== */
+
+@keyframes sl-cardPulse {
+  0%   { box-shadow: 0 0 18px rgba(0, 231, 255, 0.15); }
+  50%  { box-shadow: 0 0 26px rgba(0, 231, 255, 0.28); }
+  100% { box-shadow: 0 0 18px rgba(0, 231, 255, 0.15); }
+}
+
+.sl-card-add-animation {
+  animation: sl-cardPulse 0.6s ease-out;
+}
+
+/* ===========================================
+   CHIP ACTIVE FEEDBACK (Depth, Retrieve, etc.)
+   =========================================== */
+
+@keyframes sl-chipActiveGlow {
+  0%   { box-shadow: 0 0 6px rgba(0, 231, 255, 0.2); }
+  50%  { box-shadow: 0 0 14px rgba(0, 231, 255, 0.55); }
+  100% { box-shadow: 0 0 6px rgba(0, 231, 255, 0.2); }
+}
+
+.sl-chip-active {
+  animation: sl-chipActiveGlow 1s ease-in-out infinite;
+  border-color: #00e7ff;
+  color: #00e7ff;
+}
+
+/* ===========================================
+   DEPTH & RETRIEVE BUTTON ANIMATION
+   =========================================== */
+
+@keyframes sl-depthPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.sl-depth-btn-active {
+  animation: sl-depthPulse 0.35s ease-out;
+}
+
+/* ===========================================
+   WEATHER UPDATE PULSE
+   (When user presses "Fetch Weather")
+   =========================================== */
+
+@keyframes sl-weatherUpdateFlash {
+  0%   { background: #0d1627; }
+  30%  { background: #002a33; }
+  100% { background: #0d1627; }
+}
+
+.sl-weather-updated-pulse {
+  animation: sl-weatherUpdateFlash 1.2s ease-out;
+}
+
+/* ===========================================
+   SPOT CARD — slide-in on add
+   =========================================== */
+
+@keyframes sl-slideInUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.sl-spot-card-animate {
+  animation: sl-slideInUp 0.35s ease-out;
+}
+
+/* ===========================================
+   LOGBOOK ENTRY — slide & fade in
+   =========================================== */
+
+@keyframes sl-logEnter {
+  0%   { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.sl-log-entry-animate {
+  animation: sl-logEnter 0.35s ease-out;
+}
+
+/* ===========================================
+   ICON GLOW (for refresh icons, map pins, etc.)
+   =========================================== */
+
+@keyframes sl-iconPulse {
+  0%   { filter: drop-shadow(0 0 4px rgba(0, 231, 255, 0.3)); }
+  50%  { filter: drop-shadow(0 0 12px rgba(0, 231, 255, 0.55)); }
+  100% { filter: drop-shadow(0 0 4px rgba(0, 231, 255, 0.3)); }
+}
+
+.sl-icon-glow {
+  animation: sl-iconPulse 2s ease-in-out infinite;
+}
+// File: style.css
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:11 (UTC+2)
+// -----------------------------------------
+
+/* ===========================================
+   INPUT FOCUS BLOOM (NightOps soft glow bloom)
+   =========================================== */
+
+@keyframes sl-inputBloom {
+  0%   { box-shadow: 0 0 0 rgba(0, 231, 255, 0); }
+  100% { box-shadow: 0 0 14px rgba(0, 231, 255, 0.35); }
+}
+
+.sl-input:focus,
+.sl-textarea:focus,
+.sl-strike-input:focus,
+select.sl-input:focus {
+  animation: sl-inputBloom 0.25s ease-out;
+}
+
+/* ===========================================
+   PAGE TRANSITION FADE
+   (when switching tabs)
+   =========================================== */
+
+@keyframes sl-pageFade {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.sl-view-active {
+  animation: sl-pageFade 0.28s ease-out;
+}
+
+/* ===========================================
+   MISSION START — Activation Flash
+   (blue flash to indicate mission start)
+   =========================================== */
+
+@keyframes sl-missionStartFlash {
+  0%   { box-shadow: 0 0 0 rgba(0, 231, 255, 0); }
+  50%  { box-shadow: 0 0 18px rgba(0, 231, 255, 0.55); }
+  100% { box-shadow: 0 0 0 rgba(0, 231, 255, 0); }
+}
+
+.sl-mission-start-animate {
+  animation: sl-missionStartFlash 0.8s ease-out;
+}
+
+/* ===========================================
+   MISSION END — Deactivation Pulse
+   =========================================== */
+
+@keyframes sl-missionEndPulse {
+  0%   { box-shadow: 0 0 0 rgba(255, 79, 79, 0); }
+  50%  { box-shadow: 0 0 18px rgba(255, 79, 79, 0.55); }
+  100% { box-shadow: 0 0 0 rgba(255, 79, 79, 0); }
+}
+
+.sl-mission-end-animate {
+  animation: sl-missionEndPulse 0.8s ease-out;
+}
+
+/* ===========================================
+   STRIKE SAVE — Success Glow Burst
+   =========================================== */
+
+@keyframes sl-saveBurst {
+  0%   { box-shadow: 0 0 0 rgba(0, 231, 255, 0); }
+  40%  { box-shadow: 0 0 26px rgba(0, 231, 255, 0.75); }
+  100% { box-shadow: 0 0 0 rgba(0, 231, 255, 0); }
+}
+
+.sl-save-success {
+  animation: sl-saveBurst 0.55s ease-out;
+}
+
+/* ===========================================
+   CHECKMARK POP (for future tick icons)
+   =========================================== */
+
+@keyframes sl-checkPop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.sl-checkmark-pop {
+  animation: sl-checkPop 0.4s ease-out;
+}
+
+/* ===========================================
+   CHIP FLIP (future use for toggles)
+   =========================================== */
+
+@keyframes sl-chipFlip {
+  0%   { transform: rotateX(0); }
+  50%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+
+.sl-chip-flip {
+  animation: sl-chipFlip 0.45s ease-out;
+}
+
+/* ===========================================
+   STRIKE CARD ENTER EFFECT (logbook)
+   =========================================== */
+
+@keyframes sl-logPopIn {
+  0%   { opacity: 0; transform: scale(0.92); }
+  70%  { opacity: 1; transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.sl-log-entry-pop {
+  animation: sl-logPopIn 0.35s ease-out;
+}
+
+/* ===========================================
+   SPOT CARD ENTER EFFECT
+   =========================================== */
+
+@keyframes sl-spotPopIn {
+  0%   { opacity: 0; transform: translateY(16px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.sl-spot-entry-pop {
+  animation: sl-spotPopIn 0.35s ease-out;
+}
+
+/* ===========================================
+   FINAL: MICRO-INTERACTIONS
+   =========================================== */
+
+@keyframes sl-tapScale {
+  0%   { transform: scale(1); }
+  100% { transform: scale(0.95); }
+}
+
+.sl-tap {
+  animation: sl-tapScale 0.1s ease-out;
+}
