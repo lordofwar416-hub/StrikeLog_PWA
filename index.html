@@ -1,7 +1,7 @@
 <!--
 // File: index.html
-// Version: StrikeLog PWA v1.0 (Fixed Release)
-// Timestamp: 2025-11-25 07:22 (UTC+2)
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:45 (UTC+2)
 // -----------------------------------------
 -->
 <!DOCTYPE html>
@@ -10,538 +10,532 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#020617" />
-  <title>StrikeLog</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <title>StrikeLog — NightOps</title>
 
-  <!-- Material Symbols (necessary for icons) -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
 
-<header class="sl-header">
-  STRIKE<span style="color:#0ea5e9;">LOG</span>
-</header>
+  <!-- ===================================== -->
+  <!--             HEADER BAR                -->
+  <!-- ===================================== -->
 
-<nav class="sl-tabs">
-  <div class="sl-tab sl-tab-active" data-view="missionView">Mission</div>
-  <div class="sl-tab" data-view="logView">Logbook</div>
-  <div class="sl-tab" data-view="spotsView">Spots</div>
-  <div class="sl-tab" data-view="mapView">Map</div>
-</nav>
+  <header class="sl-header">
+    STRIKE<span style="color:#00e7ff;">LOG</span>
+  </header>
 
-<main class="sl-main">
+  <!-- ===================================== -->
+  <!--                 TABS                  -->
+  <!-- ===================================== -->
 
-<!-- =================================================
-     MISSION VIEW
-================================================= -->
+  <nav class="sl-tabs">
+    <div class="sl-tab sl-tab-active" data-view="missionView">Mission</div>
+    <div class="sl-tab" data-view="logView">Logbook</div>
+    <div class="sl-tab" data-view="spotsView">Spots</div>
+    <div class="sl-tab" data-view="mapView">Map</div>
+  </nav>
 
-<section id="missionView" class="sl-view sl-view-active">
+  <!-- MAIN CONTENT WRAPPER -->
+  <main class="sl-main">
 
-  <!-- Mission Setup Card -->
-  <div class="sl-card">
-    <div class="sl-card-header"><h3>Mission Setup</h3></div>
-    <div class="sl-card-body">
+    <!-- ===================================================== -->
+    <!--                     MISSION VIEW                      -->
+    <!-- ===================================================== -->
 
-      <label class="sl-label">Mission Name</label>
-      <input type="text" id="missionName" class="sl-input" placeholder="e.g., Morning Spinning">
+    <section id="missionView" class="sl-view sl-view-active">
 
-      <label class="sl-label">Technique</label>
-      <select id="missionTechnique" class="sl-input">
-        <option value="">Select…</option>
-        <option>Spinning</option>
-        <option>Eging</option>
-        <option>Shore Jigging</option>
-        <option>Rock Fishing</option>
-      </select>
+      <!-- MISSION SETUP CARD -->
+      <div class="sl-card sl-mission-card">
 
-      <h4 class="sl-section-title">Gear</h4>
-      <label class="sl-label">Rod</label>
-      <input type="text" id="missionRod" class="sl-input">
+        <h3>Mission Setup</h3>
 
-      <label class="sl-label">Reel</label>
-      <input type="text" id="missionReel" class="sl-input">
+        <!-- Mission Name -->
+        <div class="sl-field-group">
+          <div class="sl-field-group-title">Basic Details</div>
 
-      <label class="sl-label">Line</label>
-      <input type="text" id="missionLine" class="sl-input">
+          <label class="sl-label">Mission Name</label>
+          <input type="text" id="missionName" class="sl-input" placeholder="e.g. Night Eging Round" />
 
-      <h4 class="sl-section-title">Conditions</h4>
-
-      <div class="sl-form-grid-2">
-        <div>
-          <label class="sl-label">Sea State</label>
-          <select id="missionSeaState" class="sl-input">
-            <option value="">–</option>
-            <option>Glassy</option>
-            <option>Calm</option>
-            <option>Light chop</option>
-            <option>Choppy</option>
-            <option>Rough</option>
+          <label class="sl-label">Technique</label>
+          <select id="missionTechnique" class="sl-input">
+            <option value="">Select…</option>
+            <option>Spinning</option>
+            <option>Eging</option>
+            <option>Shore Jigging</option>
+            <option>Rock Fishing</option>
           </select>
         </div>
-        <div>
-          <label class="sl-label">Clarity</label>
-          <select id="missionClarity" class="sl-input">
+
+        <!-- Gear Section -->
+        <div class="sl-field-group">
+          <div class="sl-field-group-title">Gear</div>
+
+          <label class="sl-label">Rod</label>
+          <input type="text" id="missionRod" class="sl-input">
+
+          <label class="sl-label">Reel</label>
+          <input type="text" id="missionReel" class="sl-input">
+
+          <label class="sl-label">Line</label>
+          <input type="text" id="missionLine" class="sl-input">
+        </div>
+
+        <!-- Environment Section -->
+        <div class="sl-field-group">
+          <div class="sl-field-group-title">Environment</div>
+
+          <div class="sl-form-grid-2">
+            <div>
+              <label class="sl-label">Sea State</label>
+              <select id="missionSeaState" class="sl-input">
+                <option value="">–</option>
+                <option>Glassy</option>
+                <option>Calm</option>
+                <option>Light chop</option>
+                <option>Choppy</option>
+                <option>Rough</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="sl-label">Clarity</label>
+              <select id="missionClarity" class="sl-input">
+                <option value="">–</option>
+                <option>Clear</option>
+                <option>Semi-clear</option>
+                <option>Semi-turbid</option>
+                <option>Turbid</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="sl-form-grid-2">
+            <div>
+              <label class="sl-label">Depth (m)</label>
+              <input type="number" id="missionDepth" class="sl-input" placeholder="0–60">
+            </div>
+
+            <div>
+              <label class="sl-label">Bottom Type</label>
+              <select id="missionBottomType" class="sl-input">
+                <option value="">–</option>
+                <option>Sand</option>
+                <option>Rock</option>
+                <option>Mixed</option>
+                <option>Posidonia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="sl-form-grid-2">
+            <div>
+              <label class="sl-label">Baitfish</label>
+              <select id="missionBaitfish" class="sl-input">
+                <option value="">–</option>
+                <option>None</option>
+                <option>Surface</option>
+                <option>Midwater</option>
+                <option>Dense</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="sl-label">Light</label>
+              <select id="missionLight" class="sl-input">
+                <option value="">–</option>
+                <option>Day</option>
+                <option>Night</option>
+                <option>Dusk</option>
+                <option>Dawn</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="sl-label">Tide</label>
+          <select id="missionTide" class="sl-input">
             <option value="">–</option>
-            <option>Clear</option>
-            <option>Semi-clear</option>
-            <option>Semi-turbid</option>
-            <option>Turbid</option>
+            <option>Rising</option>
+            <option>High</option>
+            <option>Falling</option>
+            <option>Low</option>
           </select>
+
+          <label class="sl-label">Notes</label>
+          <textarea id="missionNotes" class="sl-textarea"></textarea>
+        </div>
+
+      </div>
+<!--
+// File: index.html
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:45 (UTC+2)
+// -----------------------------------------
+-->
+
+      <!-- ===================================================== -->
+      <!--                 MISSION STATUS PANEL                   -->
+      <!-- ===================================================== -->
+
+      <div class="sl-card sl-mission-card sl-mb">
+        <h3>Mission Status</h3>
+
+        <div class="sl-mission-meta">
+          <div>
+            <div class="sl-label-sm">Status</div>
+            <div id="missionStatusLabel" class="sl-mission-status sl-mission-status-idle">Idle</div>
+          </div>
+
+          <div>
+            <div class="sl-label-sm">Duration</div>
+            <div id="missionDurationLabel" class="sl-mission-duration">00:00</div>
+          </div>
+        </div>
+
+        <div class="sl-mission-controls">
+          <button id="btnStartMission" class="sl-btn-primary">Start</button>
+          <button id="btnEndMission" class="sl-btn-danger" disabled>End</button>
         </div>
       </div>
 
-      <div class="sl-form-grid-2">
-        <div>
-          <label class="sl-label">Depth (m)</label>
-          <input type="number" id="missionDepth" class="sl-input" placeholder="0-60">
+
+      <!-- ===================================================== -->
+      <!--                 WEATHER CARD (NightOps V2)             -->
+      <!-- ===================================================== -->
+
+      <div class="sl-weather-card">
+        <h3>Weather</h3>
+
+        <div class="sl-weather-grid-v2">
+
+          <div class="sl-weather-box">
+            <div class="sl-weather-box-title">Wind</div>
+            <div id="weatherWindValue" class="sl-weather-box-value">–</div>
+            <div id="weatherWindDir" class="sl-weather-box-sub">–</div>
+          </div>
+
+          <div class="sl-weather-box">
+            <div class="sl-weather-box-title">Air Temp</div>
+            <div id="weatherAirTemp" class="sl-weather-box-value">–</div>
+          </div>
+
+          <div class="sl-weather-box">
+            <div class="sl-weather-box-title">Water Temp</div>
+            <div id="weatherWaterTemp" class="sl-weather-box-value">–</div>
+          </div>
+
+          <div class="sl-weather-box">
+            <div class="sl-weather-box-title">Pressure</div>
+            <div id="weatherPressure" class="sl-weather-box-value">–</div>
+            <div id="weatherPressureTrend" class="sl-weather-box-sub">–</div>
+          </div>
+
+          <div class="sl-weather-box">
+            <div class="sl-weather-box-title">Waves</div>
+            <div id="weatherWaves" class="sl-weather-box-value">–</div>
+          </div>
+
+          <div class="sl-weather-box">
+            <div class="sl-weather-box-title">Clouds</div>
+            <div id="weatherClouds" class="sl-weather-box-value">–</div>
+          </div>
+
         </div>
-        <div>
-          <label class="sl-label">Bottom Type</label>
-          <select id="missionBottomType" class="sl-input">
-            <option value="">–</option>
-            <option>Sand</option>
-            <option>Rock</option>
-            <option>Mixed</option>
-            <option>Posidonia</option>
-          </select>
-        </div>
-      </div>
 
-      <div class="sl-form-grid-2">
-        <div>
-          <label class="sl-label">Baitfish</label>
-          <select id="missionBaitfish" class="sl-input">
-            <option value="">–</option>
-            <option>None</option>
-            <option>Surface</option>
-            <option>Midwater</option>
-            <option>Dense</option>
-          </select>
-        </div>
-        <div>
-          <label class="sl-label">Light</label>
-          <select id="missionLight" class="sl-input">
-            <option value="">–</option>
-            <option>Day</option>
-            <option>Night</option>
-            <option>Dusk</option>
-            <option>Dawn</option>
-          </select>
-        </div>
-      </div>
-
-      <label class="sl-label">Tide</label>
-      <select id="missionTide" class="sl-input">
-        <option value="">–</option>
-        <option>Rising</option>
-        <option>High</option>
-        <option>Falling</option>
-        <option>Low</option>
-      </select>
-
-      <label class="sl-label">Notes</label>
-      <textarea id="missionNotes" class="sl-input sl-textarea"></textarea>
-    </div>
-  </div>
-
-
-  <!-- Mission Status -->
-  <div class="sl-card">
-    <div class="sl-card-header"><h3>Mission Status</h3></div>
-    <div class="sl-card-body">
-
-      <div class="sl-mission-meta">
-        <div>
-          <div class="sl-label-sm">Status</div>
-          <div id="missionStatusLabel" class="sl-mission-status sl-mission-status-idle">Idle</div>
-        </div>
-        <div>
-          <div class="sl-label-sm">Duration</div>
-          <div id="missionDurationLabel" class="sl-mission-duration">00:00</div>
+        <div class="sl-weather-footer">
+          <span id="weatherUpdatedLabel" class="sl-weather-updated">Not updated</span>
+          <button id="btnFetchConditions" class="sl-btn-secondary">Refresh</button>
         </div>
       </div>
 
-      <div class="sl-mission-controls">
-        <button id="btnStartMission" class="sl-btn-primary">Start Mission</button>
-        <button id="btnEndMission" class="sl-btn-danger" disabled>End Mission</button>
-      </div>
 
-    </div>
-  </div>
+      <!-- ===================================================== -->
+      <!--                 MOON PHASE CARD V2                     -->
+      <!-- ===================================================== -->
 
+      <div class="sl-moon-card">
 
-  <!-- Weather Card -->
-  <div class="sl-card">
-    <div class="sl-card-header"><h3>Weather</h3></div>
-    <div class="sl-card-body">
-
-      <div class="sl-weather-grid">
-        <div class="sl-weather-item">
-          <div class="sl-weather-label">Wind</div>
-          <div id="weatherWindValue" class="sl-weather-value">–</div>
-          <div id="weatherWindDir" class="sl-weather-sub">–</div>
+        <div class="sl-moon-left">
+          <div id="moonPhaseIcon" class="sl-moon-icon">🌑</div>
+          <div id="moonPhaseName" class="sl-moon-phase-name">Loading...</div>
+          <div id="moonIllumination" class="sl-moon-phase-illum">–</div>
         </div>
 
-        <div class="sl-weather-item">
-          <div class="sl-weather-label">Air Temp</div>
-          <div id="weatherAirTemp" class="sl-weather-value">–</div>
+        <button id="btnRefreshMoon" class="sl-moon-refresh-btn">
+          Refresh
+        </button>
+
+      </div>
+
+      <!-- Bottom space so FAB doesn't block content -->
+      <div class="sl-bottom-safe"></div>
+
+    </section> <!-- END missionView -->
+<!--
+// File: index.html
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:45 (UTC+2)
+// -----------------------------------------
+-->
+
+    <!-- ===================================================== -->
+    <!--                     LOGBOOK VIEW                       -->
+    <!-- ===================================================== -->
+
+    <section id="logView" class="sl-view">
+
+      <div class="sl-card sl-mb">
+        <h3>Strike Log</h3>
+        <p class="sl-text-muted">Your recorded strikes for this mission.</p>
+      </div>
+
+      <ul id="logList" class="sl-strike-list">
+        <!-- JS will inject entries -->
+      </ul>
+
+      <div class="sl-bottom-safe"></div>
+
+    </section> <!-- END logView -->
+
+
+    <!-- ===================================================== -->
+    <!--                      SPOTS VIEW                        -->
+    <!-- ===================================================== -->
+
+    <section id="spotsView" class="sl-view">
+
+      <!-- Add Spot Form -->
+      <div class="sl-card sl-spot-card">
+
+        <h3>Add Spot</h3>
+
+        <div class="sl-field-group">
+
+          <label class="sl-label">Spot Name</label>
+          <input type="text" id="spotNameInput" class="sl-input" placeholder="e.g. Lighthouse Point">
+
+          <label class="sl-label">Notes</label>
+          <textarea id="spotNotesInput" class="sl-textarea" placeholder="Optional"></textarea>
+
+          <label class="sl-label">Coordinates</label>
+          <div class="sl-flex-between">
+            <span id="spotCoordsLabel" class="sl-text-muted">–</span>
+            <button id="btnSpotLocate" class="sl-btn-secondary">Locate</button>
+          </div>
+
         </div>
 
-        <div class="sl-weather-item">
-          <div class="sl-weather-label">Water Temp</div>
-          <div id="weatherWaterTemp" class="sl-weather-value">–</div>
+        <button id="btnAddSpot" class="sl-btn-primary sl-mt">Save Spot</button>
+      </div>
+
+      <!-- Saved Spots List -->
+      <div class="sl-card">
+        <h3>Saved Spots</h3>
+        <ul id="spotsList" class="sl-spot-list"></ul>
+      </div>
+
+      <div class="sl-bottom-safe"></div>
+
+    </section> <!-- END spotsView -->
+<!--
+// File: index.html
+// Version: StrikeLog NightOps v1.0
+// Timestamp: 2025-11-27 00:45 (UTC+2)
+// -----------------------------------------
+-->
+
+    <!-- ===================================================== -->
+    <!--                        MAP VIEW                        -->
+    <!-- ===================================================== -->
+
+    <section id="mapView" class="sl-view">
+
+      <div class="sl-map-card">
+
+        <h3>Map</h3>
+
+        <div class="sl-map-container-v2">
+          <!-- Placeholder (real map will replace this later) -->
+          <div class="sl-map-placeholder">
+            <div class="sl-map-placeholder-icon">📍</div>
+            <div class="sl-map-placeholder-text">Map not loaded</div>
+          </div>
         </div>
 
-        <div class="sl-weather-item">
-          <div class="sl-weather-label">Pressure</div>
-          <div id="weatherPressure" class="sl-weather-value">–</div>
-          <div id="weatherPressureTrend" class="sl-weather-sub">–</div>
+        <div class="sl-map-meta-v2">
+          <span id="mapCoordsLabel">–</span>
+          <button id="btnMapLocate">Locate Me</button>
         </div>
 
-        <div class="sl-weather-item">
-          <div class="sl-weather-label">Waves</div>
-          <div id="weatherWaves" class="sl-weather-value">–</div>
+      </div>
+
+      <div class="sl-bottom-safe"></div>
+
+    </section> <!-- END mapView -->
+
+
+    <!-- ===================================================== -->
+    <!--               FLOATING STRIKE BUTTON (FAB)            -->
+    <!-- ===================================================== -->
+
+    <button id="btnStrike" class="sl-strike-fab">
+      STRIKE
+    </button>
+
+
+    <!-- ===================================================== -->
+    <!--                   STRIKESHEET PANEL                    -->
+    <!-- ===================================================== -->
+
+    <!-- Backdrop -->
+    <div id="strikeSheetBackdrop" class="sl-sheet-backdrop sl-hidden"></div>
+
+    <!-- Sliding Sheet -->
+    <div id="strikeSheet" class="sl-sheet sl-hidden">
+
+      <div class="sl-sheet-header">
+        <h3>New Strike</h3>
+        <button id="btnCloseStrikeSheet" class="sl-btn-text">Close</button>
+      </div>
+
+      <div class="sl-sheet-body">
+
+        <!-- Time + Location Summary -->
+        <div class="sl-strike-summary-row">
+          <div class="sl-strike-summary-block">
+            <div class="sl-strike-summary-label">Time</div>
+            <div id="strikeTimeValue" class="sl-strike-summary-value">–</div>
+          </div>
+
+          <div class="sl-strike-summary-block">
+            <div class="sl-strike-summary-label">Location</div>
+            <div id="strikeLocationValue" class="sl-strike-summary-value">–</div>
+          </div>
         </div>
 
-        <div class="sl-weather-item">
-          <div class="sl-weather-label">Clouds</div>
-          <div id="weatherClouds" class="sl-weather-value">–</div>
+        <!-- Species + Lure -->
+        <div class="sl-strike-field-group">
+          <div class="sl-strike-field-title">Catch Details</div>
+
+          <label class="sl-label">Species</label>
+          <input type="text" id="strikeSpecies" class="sl-strike-input" placeholder="e.g. Squid, Seabass">
+
+          <label class="sl-label">Lure / Jig</label>
+          <input type="text" id="strikeLure" class="sl-strike-input" placeholder="e.g. B28 3.5, Minnow 120">
         </div>
-      </div>
 
-      <div class="sl-flex sl-flex-between sl-mt">
-        <span id="weatherUpdatedLabel" class="sl-text-muted">Not updated</span>
-        <button id="btnFetchConditions" class="sl-btn-secondary">Fetch Weather</button>
-      </div>
-    </div>
-  </div>
+        <!-- Retrieve + Depth Category -->
+        <div class="sl-strike-field-group">
+          <div class="sl-strike-field-title">Retrieve</div>
 
+          <div class="sl-retrieve-row">
+            <select id="strikeRetrieveStyle" class="sl-strike-input">
+              <option value="">Style…</option>
+              <option>Jerk</option>
+              <option>Twitch</option>
+              <option>Slow roll</option>
+              <option>Flutter</option>
+              <option>Pause</option>
+            </select>
 
-  <!-- Moon Phase Card -->
-  <div class="sl-card sl-fade-in">
-    <div class="sl-card-header"><h3>🌙 Moon Phase</h3></div>
-    <div class="sl-card-body sl-flex sl-flex-between" style="align-items:center;">
+            <select id="strikeRetrieveSpeed" class="sl-strike-input">
+              <option value="">Speed…</option>
+              <option>Slow</option>
+              <option>Normal</option>
+              <option>Fast</option>
+            </select>
+          </div>
 
-      <div>
-        <div id="moonPhaseIcon" style="font-size:2rem; margin-bottom:4px;">🌑</div>
-        <div id="moonPhaseName" style="font-size:0.95rem;">Loading...</div>
-        <div id="moonIllumination" class="sl-text-muted" style="font-size:0.8rem;">–</div>
-      </div>
+          <div class="sl-strike-field-title sl-mt">Depth</div>
 
-      <button id="btnRefreshMoon" class="sl-btn-secondary">Refresh</button>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- =================================================
-     LOG VIEW
-================================================= -->
-
-<section id="logView" class="sl-view">
-  <div class="sl-card">
-    <div class="sl-card-header"><h3>Strike Log</h3></div>
-    <div class="sl-card-body">
-
-      <div id="logEmptyState" class="sl-empty">No strikes recorded yet.</div>
-      <ul id="strikeList" class="sl-strike-list"></ul>
-
-      <div class="sl-flex sl-flex-between sl-mt">
-        <button id="btnQuickExport" class="sl-btn-secondary">Export JSON</button>
-        <button onclick="SLStorage.exportCSV()" class="sl-btn-secondary">CSV</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- =================================================
-     SPOTS VIEW
-================================================= -->
-
-<section id="spotsView" class="sl-view">
-
-  <div class="sl-card">
-    <div class="sl-card-header"><h3>Add Spot</h3></div>
-    <div class="sl-card-body">
-
-      <label class="sl-label">Spot Name</label>
-      <input type="text" id="spotName" class="sl-input">
-
-      <label class="sl-label">Latitude</label>
-      <input type="number" id="spotLat" class="sl-input" step="0.00001">
-
-      <label class="sl-label">Longitude</label>
-      <input type="number" id="spotLon" class="sl-input" step="0.00001">
-
-      <label class="sl-label">Depth (m)</label>
-      <input type="number" id="spotDepth" class="sl-input">
-
-      <label class="sl-label">Bottom Type</label>
-      <select id="spotBottom" class="sl-input">
-        <option value="">–</option>
-        <option>Sand</option>
-        <option>Rock</option>
-        <option>Mixed</option>
-        <option>Posidonia</option>
-      </select>
-
-      <div class="sl-flex" style="margin-top:12px; justify-content:space-between;">
-        <button id="btnUseCurrentLocationForSpot" class="sl-btn-secondary">Use Current Location</button>
-        <button id="btnAddSpot" class="sl-btn-primary">Add Spot</button>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="sl-card">
-    <div class="sl-card-header"><h3>Saved Spots</h3></div>
-    <div class="sl-card-body">
-      <ul id="spotList" class="sl-spot-list"></ul>
-
-      <div class="sl-flex sl-flex-between sl-mt">
-        <button id="btnUpdateAllSpotsWeather" class="sl-btn-secondary">Update Weather</button>
-        <button id="btnExportSpots" class="sl-btn-secondary">Export</button>
-        <button id="btnImportSpots" class="sl-btn-secondary">Import</button>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-
-
-
-<!-- =================================================
-     MAP VIEW
-================================================= -->
-
-<section id="mapView" class="sl-view">
-
-  <div class="sl-card sl-map-card">
-    <div class="sl-card-header"><h3>Map</h3></div>
-    <div class="sl-card-body">
-
-      <div class="sl-map-container">
-        <div class="sl-map-placeholder">
-          <div style="font-size:2rem; opacity:0.6;">📍</div>
-          <div>Map not implemented yet</div>
-          <div style="font-size:0.8rem;">(Leaflet will load here)</div>
+          <div class="sl-depth-row">
+            <div class="sl-depth-btn" data-depth="surface">Surface</div>
+            <div class="sl-depth-btn" data-depth="mid">Midwater</div>
+            <div class="sl-depth-btn" data-depth="bottom">Bottom</div>
+          </div>
         </div>
-      </div>
 
-      <div class="sl-map-meta">
-        <div>
-          <span class="sl-label-sm">Current:</span>
-          <span id="mapCurrentCoords" class="sl-map-coords">–</span>
+        <!-- Environment Snapshot -->
+        <div class="sl-strike-field-group">
+          <div class="sl-strike-field-title">Environment Capture</div>
+
+          <div class="sl-strike-env-row">
+            <div class="sl-strike-env-item">
+              <div class="sl-strike-env-label">Wind</div>
+              <div id="strikeEnvWind" class="sl-strike-env-value">–</div>
+            </div>
+            <div class="sl-strike-env-item">
+              <div class="sl-strike-env-label">Pressure</div>
+              <div id="strikeEnvPressure" class="sl-strike-env-value">–</div>
+            </div>
+            <div class="sl-strike-env-item">
+              <div class="sl-strike-env-label">Temp</div>
+              <div id="strikeEnvTemp" class="sl-strike-env-value">–</div>
+            </div>
+          </div>
+
+          <div class="sl-strike-env-row sl-mt">
+            <div class="sl-strike-env-item">
+              <div class="sl-strike-env-label">Waves</div>
+              <div id="strikeEnvWaves" class="sl-strike-env-value">–</div>
+            </div>
+            <div class="sl-strike-env-item">
+              <div class="sl-strike-env-label">Clarity</div>
+              <div id="strikeEnvClarity" class="sl-strike-env-value">–</div>
+            </div>
+            <div class="sl-strike-env-item">
+              <div class="sl-strike-env-label">Lunar</div>
+              <div id="strikeEnvLunar" class="sl-strike-env-value">–</div>
+            </div>
+          </div>
         </div>
-        <button onclick="SLUI.initMap()" class="sl-btn-secondary">Recenter</button>
+
+        <!-- Notes -->
+        <div class="sl-strike-field-group">
+          <div class="sl-strike-field-title">Notes</div>
+          <textarea id="strikeNotes" class="sl-notes-area" placeholder="Optional observations…"></textarea>
+        </div>
+
+        <!-- Photo -->
+        <div class="sl-strike-field-group sl-photo-section">
+          <div class="sl-strike-field-title">Photo</div>
+
+          <input type="file" id="strikePhotoInput" accept="image/*" class="sl-input">
+          <div id="strikePhotoPreview" class="sl-photo-preview-v2 sl-hidden"></div>
+        </div>
+
+      </div> <!-- END sl-sheet-body -->
+
+
+      <div class="sl-sheet-footer">
+        <button id="btnSaveStrike" class="sl-btn-primary">Save</button>
+        <button id="btnCancelStrike" class="sl-btn-secondary">Cancel</button>
       </div>
 
-    </div>
-  </div>
-
-</section>
+    </div> <!-- END strikeSheet -->
 
 
+  </main> <!-- END main -->
 
 
-<!-- =================================================
-     FLOATING STRIKE BUTTON
-================================================= -->
+  <!-- ===================================================== -->
+  <!--                     SCRIPT LOADING                    -->
+  <!-- ===================================================== -->
 
-<button id="strikeFab" class="sl-strike-fab">
-  <span class="sl-strike-fab-label">STRIKE</span>
-</button>
+  <script src="js/app.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/env.js"></script>
+  <script src="js/geo.js"></script>
+  <script src="js/lunar.js"></script>
 
-
-
-
-<!-- =================================================
-     STRIKE SHEET
-================================================= -->
-
-<div id="strikeSheetBackdrop" class="sl-sheet-backdrop sl-hidden"></div>
-
-<div id="strikeSheet" class="sl-sheet sl-hidden">
-
-  <div class="sl-sheet-header">
-    <h2>Strike Details</h2>
-    <button id="btnCloseStrikeSheet" class="sl-btn-text sl-text-danger">Close</button>
-  </div>
-
-  <div class="sl-sheet-body">
-
-    <div class="sl-strike-meta-row">
-      <div>
-        <div class="sl-label-sm">Time</div>
-        <div id="strikeTimeLabel" class="sl-strike-meta-value">--:--</div>
-      </div>
-      <div>
-        <div class="sl-label-sm">Location</div>
-        <div id="strikeLocationLabel" class="sl-strike-meta-value">–</div>
-      </div>
-    </div>
-
-    <div class="sl-strike-meta-row">
-      <div>
-        <div class="sl-label-sm">Lunar</div>
-        <div id="strikeLunarLabel" class="sl-strike-meta-value">–</div>
-      </div>
-      <div>
-        <button id="btnRefreshStrikeEnv" class="sl-btn-secondary">Refresh Env</button>
-      </div>
-    </div>
-
-    <!-- Env snapshot -->
-    <div class="sl-strike-env-row">
-      <div class="sl-strike-env-item">
-        <div class="sl-strike-env-label">Wind</div>
-        <div id="strikeEnvWind" class="sl-strike-env-value">–</div>
-        <div id="strikeEnvWindDir" class="sl-text-muted" style="font-size:0.7rem;">–</div>
-      </div>
-      <div class="sl-strike-env-item">
-        <div class="sl-strike-env-label">Air</div>
-        <div id="strikeEnvAirTemp" class="sl-strike-env-value">–</div>
-      </div>
-      <div class="sl-strike-env-item">
-        <div class="sl-strike-env-label">Water</div>
-        <div id="strikeEnvWaterTemp" class="sl-strike-env-value">–</div>
-      </div>
-    </div>
-
-    <div class="sl-strike-env-row">
-      <div class="sl-strike-env-item">
-        <div class="sl-strike-env-label">Pressure</div>
-        <div id="strikeEnvPressure" class="sl-strike-env-value">–</div>
-        <div id="strikeEnvPressureTrend" class="sl-text-muted" style="font-size:0.7rem;">–</div>
-      </div>
-      <div class="sl-strike-env-item">
-        <div class="sl-strike-env-label">Waves</div>
-        <div id="strikeEnvWaves" class="sl-strike-env-value">–</div>
-      </div>
-      <div class="sl-strike-env-item">
-        <div class="sl-strike-env-label">Clouds</div>
-        <div id="strikeEnvClouds" class="sl-strike-env-value">–</div>
-      </div>
-    </div>
-
-    <label class="sl-label">Species</label>
-    <input type="text" id="strikeSpecies" class="sl-input">
-
-    <div class="sl-form-grid-2">
-      <div>
-        <label class="sl-label">Size (cm)</label>
-        <input type="number" id="strikeSize" class="sl-input">
-      </div>
-      <div>
-        <label class="sl-label">Weight (g)</label>
-        <input type="number" id="strikeWeight" class="sl-input">
-      </div>
-    </div>
-
-    <label class="sl-label">Lure</label>
-    <input type="text" id="strikeLure" class="sl-input">
-
-    <label class="sl-label">Released</label>
-    <select id="strikeReleased" class="sl-input">
-      <option value="">–</option>
-      <option value="yes">Yes</option>
-      <option value="no">No</option>
-    </select>
-
-    <label class="sl-label">Retrieve Technique</label>
-    <select id="strikeRetrieveTechnique" class="sl-input">
-      <option value="">–</option>
-      <option>Twitch</option>
-      <option>Jerking</option>
-      <option>Slow retrieve</option>
-      <option>Fast retrieve</option>
-    </select>
-
-    <label class="sl-label">Retrieve Speed</label>
-    <select id="strikeRetrieveSpeed" class="sl-input">
-      <option value="">–</option>
-      <option>Slow</option>
-      <option>Medium</option>
-      <option>Fast</option>
-    </select>
-
-    <label class="sl-label">Strike Depth</label>
-    <select id="strikeDepthCategory" class="sl-input">
-      <option value="">–</option>
-      <option>Surface</option>
-      <option>Midwater</option>
-      <option>Bottom</option>
-    </select>
-
-    <label class="sl-label">Strike Type</label>
-    <select id="strikeType" class="sl-input">
-      <option value="">–</option>
-      <option>Hit & run</option>
-      <option>Follow → Hit</option>
-      <option>Instant reaction</option>
-      <option>Slow pickup</option>
-    </select>
-
-    <label class="sl-label">Notes</label>
-    <textarea id="strikeNotes" class="sl-input sl-textarea"></textarea>
-
-    <label class="sl-label">Photo</label>
-    <input type="file" id="strikePhoto" accept="image/*" class="sl-input">
-    
-    <div id="strikePhotoPreview" class="sl-photo-preview sl-hidden">
-      <img id="strikePhotoImg" src="">
-    </div>
-
-  </div>
-
-  <div class="sl-sheet-footer">
-    <button id="btnCancelStrike" class="sl-btn-secondary">Cancel</button>
-    <button id="btnSaveStrike" class="sl-btn-primary">Save</button>
-  </div>
-
-</div>
-
-
-
-<!-- TOAST -->
-<div id="toast" class="sl-toast sl-hidden">
-  <span id="toastMessage">Message</span>
-</div>
-
-
-
-<!-- JS FILES -->
-
-<script src="js/lunar.js"></script>
-<script src="js/geo.js"></script>
-<script src="js/env.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/app.js"></script>
-
-<!-- Service Worker -->
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(() => console.log('SW registered'))
-    .catch(err => console.warn('SW failed', err));
-}
-</script>
-
-</main>
 </body>
 </html>
